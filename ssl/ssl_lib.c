@@ -1008,6 +1008,14 @@ int SSL_connect(SSL *s)
     return (s->method->ssl_connect(s));
 }
 
+void SSL_set_udf_sid(SSL *s, unsigned char *udf_sid, unsigned int udf_sid_len)
+{
+    if (udf_sid_len > 0) {
+        memcpy(s->udf_sid, udf_sid, udf_sid_len);
+    }
+    s->udf_sid_len = udf_sid_len;
+}
+
 long SSL_get_default_timeout(const SSL *s)
 {
     return (s->method->get_timeout());

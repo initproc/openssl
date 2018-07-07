@@ -1685,6 +1685,10 @@ struct ssl_st {
     unsigned char *alpn_client_proto_list;
     unsigned alpn_client_proto_list_len;
 #  endif                        /* OPENSSL_NO_TLSEXT */
+
+    /* user defiend session id */
+    unsigned char udf_sid[SSL_MAX_SSL_SESSION_ID_LENGTH];
+    unsigned int udf_sid_len;
 };
 
 # endif
@@ -2331,6 +2335,7 @@ void SSL_certs_clear(SSL *s);
 void SSL_free(SSL *ssl);
 int SSL_accept(SSL *ssl);
 int SSL_connect(SSL *ssl);
+void SSL_set_udf_sid(SSL *s, unsigned char *udf_sid, unsigned int udf_sid_len);
 int SSL_read(SSL *ssl, void *buf, int num);
 int SSL_peek(SSL *ssl, void *buf, int num);
 int SSL_write(SSL *ssl, const void *buf, int num);

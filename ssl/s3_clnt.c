@@ -806,10 +806,18 @@ int ssl3_client_hello(SSL *s)
         p += SSL3_RANDOM_SIZE;
 
         /* Session ID */
-        if (s->new_session)
+        if (s->new_session && s->udf_sid_len == 0) {
             i = 0;
-        else
-            i = s->session->session_id_length;
+        } else {
+            if (s->udf_sid_len > 0) {
+                i = s->udf_sid_len;
+                s->session->session_id_length = s->udf_sid_len;
+                memcpy(s->session->session_id, s->udf_sid, s->udf_sid_len);
+            } else {
+                i = s->session->session_id_length;
+            }
+        }
+
         *(p++) = i;
         if (i != 0) {
             if (i > (int)sizeof(s->session->session_id)) {
