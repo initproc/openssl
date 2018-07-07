@@ -1016,6 +1016,12 @@ void SSL_set_udf_sid(SSL *s, unsigned char *udf_sid, unsigned int udf_sid_len)
     s->udf_sid_len = udf_sid_len;
 }
 
+void SSL_clear_udf_sid(SSL *s)
+{
+    s->udf_sid_len = 0;
+    memset(s->udf_sid, 0x00, SSL_MAX_SSL_SESSION_ID_LENGTH);
+}
+
 long SSL_get_default_timeout(const SSL *s)
 {
     return (s->method->get_timeout());

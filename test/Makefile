@@ -104,7 +104,7 @@ OBJ=	$(BNTEST).o $(ECTEST).o  $(ECDSATEST).o $(ECDHTEST).o $(IDEATEST).o \
 	$(EVPTEST).o $(EVPEXTRATEST).o $(IGETEST).o $(JPAKETEST).o $(ASN1TEST).o $(V3NAMETEST).o \
 	$(HEARTBEATTEST).o $(CONSTTIMETEST).o $(VERIFYEXTRATEST).o \
 	$(CLIENTHELLOTEST).o  $(SSLV2CONFTEST).o $(DTLSTEST).o ssltestlib.o \
-	$(BADDTLSTEST).o $(FATALERRTEST).o
+	$(BADDTLSTEST).o $(FATALERRTEST).o $(UDFSIDTEST).o
 
 SRC=	$(BNTEST).c $(ECTEST).c  $(ECDSATEST).c $(ECDHTEST).c $(IDEATEST).c \
 	$(MD2TEST).c  $(MD4TEST).c $(MD5TEST).c \
@@ -116,7 +116,7 @@ SRC=	$(BNTEST).c $(ECTEST).c  $(ECDSATEST).c $(ECDHTEST).c $(IDEATEST).c \
 	$(EVPTEST).c $(EVPEXTRATEST).c $(IGETEST).c $(JPAKETEST).c $(SRPTEST).c $(ASN1TEST).c \
 	$(V3NAMETEST).c $(HEARTBEATTEST).c $(CONSTTIMETEST).c $(VERIFYEXTRATEST).c \
 	$(CLIENTHELLOTEST).c  $(SSLV2CONFTEST).c $(DTLSTEST).c ssltestlib.c \
-	$(BADDTLSTEST).c $(FATALERRTEST).c
+	$(BADDTLSTEST).c $(FATALERRTEST).c $(UDFSIDTEST).c
 
 EXHEADER= 
 HEADER=	testutil.h ssltestlib.h $(EXHEADER)
@@ -407,6 +407,9 @@ dclean:
 clean:
 	rm -f .rnd tmp.bntest tmp.bctest *.o *.obj *.dll lib tags core .pure .nfs* *.old *.bak fluff $(EXE) *.ss *.srl log dummytest
 
+clean-udfsidtest:
+	rm -f udfsidtest udfsidtest.o
+
 $(DLIBSSL):
 	(cd ..; $(MAKE) build_libssl)
 
@@ -575,6 +578,9 @@ $(SSLV2CONFTEST)$(EXE_EXT): $(SSLV2CONFTEST).o
 
 $(DTLSTEST)$(EXE_EXT): $(DTLSTEST).o ssltestlib.o $(DLIBSSL) $(DLIBCRYPTO)
 	@target=$(DTLSTEST); exobj=ssltestlib.o; $(BUILD_CMD)
+
+$(UDFSIDTEST)$(EXE_EXT): udfsidtest.o $(DLIBSSL) $(DLIBCRYPTO)
+	@target=$(UDFSIDTEST) $(BUILD_CMD)
 
 #$(AESTEST).o: $(AESTEST).c
 #	$(CC) -c $(CFLAGS) -DINTERMEDIATE_VALUE_KAT -DTRACE_KAT_MCT $(AESTEST).c

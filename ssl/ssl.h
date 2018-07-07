@@ -2336,6 +2336,7 @@ void SSL_free(SSL *ssl);
 int SSL_accept(SSL *ssl);
 int SSL_connect(SSL *ssl);
 void SSL_set_udf_sid(SSL *s, unsigned char *udf_sid, unsigned int udf_sid_len);
+void SSL_clear_udf_sid(SSL *s);
 int SSL_read(SSL *ssl, void *buf, int num);
 int SSL_peek(SSL *ssl, void *buf, int num);
 int SSL_write(SSL *ssl, const void *buf, int num);
