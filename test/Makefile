@@ -74,6 +74,7 @@ BADDTLSTEST=	bad_dtls_test
 SSLV2CONFTEST = 	sslv2conftest
 DTLSTEST =	dtlstest
 FATALERRTEST =	fatalerrtest
+UDFSIDTEST= udfsidtest
 
 TESTS=		alltests
 
@@ -88,7 +89,7 @@ EXE=	$(BNTEST)$(EXE_EXT) $(ECTEST)$(EXE_EXT)  $(ECDSATEST)$(EXE_EXT) $(ECDHTEST)
 	$(ASN1TEST)$(EXE_EXT) $(V3NAMETEST)$(EXE_EXT) $(HEARTBEATTEST)$(EXE_EXT) \
 	$(CONSTTIMETEST)$(EXE_EXT) $(VERIFYEXTRATEST)$(EXE_EXT) \
 	$(CLIENTHELLOTEST)$(EXE_EXT) $(SSLV2CONFTEST)$(EXE_EXT) $(DTLSTEST)$(EXE_EXT) \
-	$(BADDTLSTEST)$(EXE_EXT) $(FATALERRTEST)$(EXE_EXT)
+	$(BADDTLSTEST)$(EXE_EXT) $(FATALERRTEST)$(EXE_EXT) $(UDFSIDTEST)$(EXE_EXT)
 
 # $(METHTEST)$(EXE_EXT)
 
@@ -659,6 +660,7 @@ clienthellotest.o: ../include/openssl/ssl3.h ../include/openssl/stack.h
 clienthellotest.o: ../include/openssl/symhacks.h ../include/openssl/tls1.h
 clienthellotest.o: ../include/openssl/x509.h ../include/openssl/x509_vfy.h
 clienthellotest.o: clienthellotest.c
+udfsidtest.o: ../include/openssl/ssl.h udfsidtest.c
 constant_time_test.o: ../crypto/constant_time_locl.h ../e_os.h
 constant_time_test.o: ../include/openssl/e_os2.h
 constant_time_test.o: ../include/openssl/opensslconf.h constant_time_test.c
