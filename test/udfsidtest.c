@@ -103,7 +103,7 @@ void usage(int argc, char *argv[0]) {
     printf("\t-k: flag for keepalive\n");
     printf("\t-s: flag for tls session resumeption\n");
     printf("\t-t: tls ext session ticket\n");
-    printf("\t-v: tls version\n");
+    printf("\t-v: tls version(ex: 1.0 1.1 1.2)\n");
 }
 
 void init_openssl(void) {
