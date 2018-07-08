@@ -128,15 +128,15 @@ void print_ssl_err(const char *func_nm) {
 }
 
 const SSL_METHOD *get_TLS_method(request_conf_t *req_conf) {
-    if (strcmp(req_conf->tls_method, "1.0")) {
+    if (strcmp(req_conf->tls_method, "1.0") == 0) {
         printf("TLSv1 choosed\n");
         return TLSv1_method();
     }
-    if (strcmp(req_conf->tls_method, "1.1")) {
+    if (strcmp(req_conf->tls_method, "1.1") == 0) {
         printf("TLSv1.1 choosed\n");
         return TLSv1_1_method();
     }
-    if (strcmp(req_conf->tls_method, "1.2")) {
+    if (strcmp(req_conf->tls_method, "1.2") == 0) {
         printf("TLSv1.2 choosed\n");
         return TLSv1_2_method();
     }
